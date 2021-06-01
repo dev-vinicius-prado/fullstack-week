@@ -1,11 +1,11 @@
 package com.fullstackweek.myinvest.repositories;
 
 import com.fullstackweek.myinvest.domain.Investimento;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 @DataJpaTest
 class InvestimentoRepositoryTest {
@@ -23,7 +23,8 @@ class InvestimentoRepositoryTest {
 
         investimentoSalvoCodigoAAA000.setCodigoDoAtivo(CODIGO_BBB_111);
         final var investimentoSalvoCodigoBBB111 = investimentoRepository.save(investimentoSalvoCodigoAAA000);
-        Assertions.assertEquals(CODIGO_BBB_111, investimentoSalvoCodigoBBB111.getCodigoDoAtivo());
+
+        assertEquals(CODIGO_BBB_111, investimentoSalvoCodigoBBB111.getCodigoDoAtivo());
     }
 
     @Test
@@ -33,10 +34,10 @@ class InvestimentoRepositoryTest {
 
         final var idConsultado = investimentoComId.getId();
         final var investimento = investimentoRepository.findById(idConsultado).orElse(null);
-        Assertions.assertNotNull(investimento);
+        assertNotNull(investimento);
         final var idEsperado = investimento.getId();
 
-        Assertions.assertEquals(idConsultado, idEsperado);
+        assertEquals(idConsultado, idEsperado);
     }
 
     @Test
@@ -45,24 +46,28 @@ class InvestimentoRepositoryTest {
         final var investimentoParaDeletar = investimentoRepository.save(investimento);
         final var idADeletar = investimentoParaDeletar.getId();
         investimentoRepository.delete(investimentoParaDeletar);
-        Assertions.assertFalse(investimentoRepository.existsById(idADeletar));
+
+        assertFalse(investimentoRepository.existsById(idADeletar));
     }
 
     @Test
     void deve_recuperar_lista_de_investimentos() {
+        var investimento1 = new Investimento();
+        investimentoRepository.save(investimento1);
+        var investimento2 = new Investimento();
+        investimentoRepository.save(investimento2);
+
         var investimentos = investimentoRepository.findAll();
-        Assertions.assertNotNull(investimentos);
+        final var quantidadeTotalInvestimentos = 2;
+
+        assertEquals(quantidadeTotalInvestimentos, investimentos.size());
     }
 
     @Test
     void deve_salvar_um_investimento() {
         var investimentoParaSalvar = new Investimento();
         final var investimento = investimentoRepository.save(investimentoParaSalvar);
-        Assertions.assertNotNull(investimento.getId());
-    }
 
-    @BeforeEach
-    void setUp() {
-
+        assertNotNull(investimento.getId());
     }
 }
