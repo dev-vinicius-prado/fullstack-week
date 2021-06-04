@@ -12,8 +12,9 @@ public interface InvestimentoService {
 
     Collection<Investimento> carregarListaInvestimentos();
 
-    void deletarInvestimento(Investimento investimento);
+    void deletarInvestimento(Long paraDeletar);
 
     Investimento registrarInvestimento(Investimento investimento);
 
+    boolean naoExisteInvestimentoComId(Long id);
 }
