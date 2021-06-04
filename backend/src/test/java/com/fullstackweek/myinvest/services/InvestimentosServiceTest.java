@@ -10,6 +10,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 
 @ExtendWith(MockitoExtension.class)
@@ -50,11 +51,11 @@ class InvestimentosServiceTest {
     @Test
     void deve_chamar_o_deletar_investimento() {
         //dado que
-        final var investimento = new Investimento();
+        final var idParaDeletar = 1L;
         //quando
-        underTest.deletarInvestimento(investimento);
+        underTest.deletarInvestimento(idParaDeletar);
         //entao
-        verify(investimentoRepository).delete(investimento);
+        verify(investimentoRepository).delete(any());
     }
 
     @Test
