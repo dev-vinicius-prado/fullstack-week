@@ -7,6 +7,7 @@ import com.fullstackweek.myinvest.services.InvestimentoService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.Collection;
 
 @Service
@@ -38,6 +39,7 @@ public class InvestimentoServiceImpl implements InvestimentoService {
 
     @Override
     public Investimento registrarInvestimento(Investimento investimento) {
+        investimento.setDataCompra(LocalDate.now());
         return investimentoRepository.save(investimento);
     }
 
