@@ -10,7 +10,10 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.Optional;
+
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.verify;
 
 @ExtendWith(MockitoExtension.class)
@@ -34,7 +37,10 @@ class InvestimentosServiceTest {
     void deve_chamar_o_buscar_por_id() {
         //dado que
         final var idInvestimento = 1L;
+        final var investimento = new Investimento();
+        investimento.setId(idInvestimento);
         //quando
+        doReturn(Optional.of(investimento)).when(investimentoRepository).findById(idInvestimento);
         underTest.buscarPorId(idInvestimento);
         //entao
         verify(investimentoRepository).findById(idInvestimento);
@@ -52,7 +58,11 @@ class InvestimentosServiceTest {
     void deve_chamar_o_deletar_investimento() {
         //dado que
         final var idParaDeletar = 1L;
+        final var investimento = new Investimento();
+        investimento.setId(idParaDeletar);
         //quando
+        doReturn(Optional.of(investimento)).when(investimentoRepository).findById(idParaDeletar);
+        underTest.buscarPorId(idParaDeletar);
         underTest.deletarInvestimento(idParaDeletar);
         //entao
         verify(investimentoRepository).delete(any());

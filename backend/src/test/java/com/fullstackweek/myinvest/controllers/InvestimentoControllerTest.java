@@ -17,6 +17,7 @@ import java.util.Collections;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.doReturn;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -79,11 +80,6 @@ class InvestimentoControllerTest {
         mockMvc.perform(
                 get(APP_BASE_URL + "/{id}", idInexistente).contentType(APPLICATION_JSON))
                 .andExpect(status().isNotFound());
-//                .andExpect(
-//                        mvcResult -> assertTrue(mvcResult.getResolvedException() instanceof ResourceNotFoundException))
-//                .andExpect(
-//                        mvcResult -> assertEquals("Investimento não encontrado.",
-//                                mvcResult.getResolvedException().getMessage()));
     }
 
     @Test
@@ -167,7 +163,7 @@ class InvestimentoControllerTest {
         paraDeletar.setId(ID);
         //quando
         doReturn(false).when(investimentoService).naoExisteInvestimentoComId(paraDeletar.getId());
-        doReturn(null).when(investimentoService).deletarInvestimento(paraDeletar.getId());
+        doNothing().when(investimentoService).deletarInvestimento(paraDeletar.getId());
         //entao
         mockMvc.perform(delete(APP_BASE_URL + "/{id}", paraDeletar.getId())
                 .contentType(APPLICATION_JSON))
