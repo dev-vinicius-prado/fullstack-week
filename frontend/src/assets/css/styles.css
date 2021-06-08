@@ -1,0 +1,35 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --color-text-primary: #FDFDFD;
+    --color-text-secondary: #7F8489;
+    --color-text-field: #A7A9AC;
+    --color-text-h1: #209F85;
+    --color-text-h2: var(--color-text-secondary);
+    
+    --color-background-primary: #26272D;
+    --color-background-field: #2D2D33;
+
+    --field-inner-shadow: 0px 4px 4px 0px #00000040 inset;
+    --button-outer-shadow: 0px 4px 4px 0px #00000040;
+
+    --field-border: 1px solid #454751B5;
+
+}
+
+html, body {
+    font-family: 'Poppins', sans-serif;
+    color: var(--color-text-primary);
+    background-color: var(--color-background-primary);
+}
+
+ul li {
+    list-style: none;
+}
+a {
+    text-decoration: none;
+}
