@@ -1,12 +1,9 @@
 import "./assets/css/styles.css";
+import { Home } from "./components/Home";
 
 function App() {
   return (
-    
-        <h1>
-          My Invest - Aplicativo de investimento
-        </h1>
-    
+        <Home />
   );
 }
 
