@@ -15,7 +15,7 @@
     --color-background-field: #2D2D33;
 
     --field-inner-shadow: 0px 4px 4px 0px #00000040 inset;
-    --button-outer-shadow: 0px 4px 4px 0px #00000040;
+    --element-outer-shadow: 0px 4px 4px 0px #00000040;
 
     --field-border: 1px solid #454751B5;
 
@@ -32,4 +32,10 @@ ul li {
 }
 a {
     text-decoration: none;
+}
+
+header svg {
+    color: var(--color-text-h1);
+    font-size: 2rem !important;
+    margin: 5px 15px;
 }
